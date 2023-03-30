@@ -77,7 +77,7 @@ class Environment():
             for agent in self.animal_agents:
                 agent.roaming()
                 
-                if agent.ptype == "Prey":
+                if (agent.ptype == "Prey"):
                     agent.aging()
                     
                     if agent.check_if_dead():
