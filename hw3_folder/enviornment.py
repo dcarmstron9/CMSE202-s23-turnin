@@ -47,13 +47,14 @@ class Environment():
                         del agent
                     else:
                         temp_agents.append(agent)
-                        temp_new_agents = agent.procreate(dt, self.animal_agents)
+                        temp_new_agents = agent.procreate(self.animal_agents, dt)
                         if len(temp_new_agents) > 0:
                             temp_agents.extend(temp_new_agents)
                 else:
                     caught_prey = agent.hunt(self.animal_agents)
                     if caught_prey:
                         temp_hunted_agents.append(caught_prey)
+                    temp_agents.append(agent)
 
             for agent in temp_hunted_agents:
                 temp_agents.remove(agent)        
@@ -63,7 +64,7 @@ class Environment():
             plt.ylim(0,self.ysize)
             plt.show()   
             time.sleep(0.001)      
-
+            
     def simulate_plot_populations(self,tot_time):
         self.light_brown_animals = []
         self.dark_brown_animals = []
@@ -83,7 +84,7 @@ class Environment():
                         del agent
                     else:
                         temp_agents.append(agent)
-                        temp_new_agents = agent.procreate(dt, self.animal_agents)
+                        temp_new_agents = agent.procreate(self.animal_agents, dt)
                         if len(temp_new_agents) > 0:
                             temp_agents.extend(temp_new_agents)
                 elif agent.ptype == "Predator":
@@ -110,3 +111,5 @@ class Environment():
         plt.plot(self.times,self.dark_brown_animals,label="Dark Brown")
         plt.legend(loc="best")
         plt.show()  
+
+
